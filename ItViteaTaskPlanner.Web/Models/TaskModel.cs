@@ -15,10 +15,13 @@ namespace ItViteaTaskPlanner.Web.Models
     public class TaskModel
     {
         public int Id { get; set; }
+        public string Title { get; set; }
+        public string Discription { get; set; }
         public int Type { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public int[] AppointmentIds { get; set; }
         public int[] DocumentIds { get; set; }
+
     }
 }
