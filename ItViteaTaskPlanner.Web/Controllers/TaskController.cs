@@ -46,22 +46,45 @@ namespace ItViteaTaskPlanner.Web.Controllers
             bool usePerrys = false;
             if (usePerrys)
             {
-                //---------------------------------------------------------------- < omdat ja hey moeten het aleen hier hebben toch?
-                Data.Task BackendTask = taskDatabase.Get(id);
-                Data.Category category = categoryDatabase.Get(id);
+                bool ByAttribute = true;
+                if (ByAttribute)
+                {
+                    //---------------------------------------------------------------- < omdat ja hey moeten het aleen hier hebben toch?
+                    Data.Task BackendTask = taskDatabase.Get(id);
+                    Data.Category category = categoryDatabase.Get(id);
 
-                //-------------------------------------------------------------------------- Lang level easy to use converters :D
-                details = ModelConverter.Convert(BackendTask, new Details());
-                details = ModelConverter.Convert(category, details);
+                    //-------------------------------------------------------------------------- Lang level easy to use converters :D
+                    details = ModelConverter.ConvertByAttribute(BackendTask, new Details());
+                    details = ModelConverter.ConvertByAttribute(category, details);
 
-                details.Appointments = ModelConverter.Convert(
-                    appointmentDatabase.GetAppointmentsOfTast(id), new List<Appointment>());
+                    details.Appointments = ModelConverter.ConvertByAttribute(
+                        appointmentDatabase.GetAppointmentsOfTast(id), new List<Appointment>());
 
-                details.Documents = ModelConverter.Convert(
-                    documentsDatabase.GetDocumentsOfTast(id), new List<Document>());
+                    details.Documents = ModelConverter.ConvertByAttribute(
+                        documentsDatabase.GetDocumentsOfTast(id), new List<Document>());
 
-                details.Notes = ModelConverter.Convert(
-                    noteDatabase.GetNotesOfTast(id), new List<Note>());
+                    details.Notes = ModelConverter.ConvertByAttribute(
+                        noteDatabase.GetNotesOfTast(id), new List<Note>());
+                }
+                else
+                {
+                    //---------------------------------------------------------------- < omdat ja hey moeten het aleen hier hebben toch?
+                    Data.Task BackendTask = taskDatabase.Get(id);
+                    Data.Category category = categoryDatabase.Get(id);
+
+                    //-------------------------------------------------------------------------- Lang level easy to use converters :D
+                    details = ModelConverter.Convert(BackendTask, new Details());
+                    details = ModelConverter.Convert(category, details);
+
+                    details.Appointments = ModelConverter.Convert(
+                        appointmentDatabase.GetAppointmentsOfTast(id), new List<Appointment>());
+
+                    details.Documents = ModelConverter.Convert(
+                        documentsDatabase.GetDocumentsOfTast(id), new List<Document>());
+
+                    details.Notes = ModelConverter.Convert(
+                        noteDatabase.GetNotesOfTast(id), new List<Note>());
+                }
             }
             else
             {
