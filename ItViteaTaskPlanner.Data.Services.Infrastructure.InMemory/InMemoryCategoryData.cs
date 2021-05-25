@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
 {
-    class InMemoryCategoryData : ICategoryData
+    public class InMemoryCategoryData : ICategoryData
     {
         private readonly List<Category> categories;
 

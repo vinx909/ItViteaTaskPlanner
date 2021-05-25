@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
 {
-    class InMemoryNoteData : INoteData
+    public class InMemoryNoteData : INoteData
     {
         private readonly List<Note> notes;
 
@@ -40,11 +40,11 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
         {
             return notes.FirstOrDefault(n => n.Id == id);
         }
-        public IEnumerable<Note> GetNotesOfTast(int tastId)
+        public IEnumerable<Note> GetNotesOfTast(int taskId)
         {
             foreach (Note note in notes)
             {
-                if(note.TaskId == tastId)
+                if(note.TaskId == taskId)
                 {
                     yield return note;
                 }

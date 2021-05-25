@@ -11,12 +11,20 @@ namespace ItViteaTaskPlanner.Web.Controllers
 {
     public class TaskController : Controller
     {
-        Data.Services.ITaskData TaskDataBase;
+        Data.Services.ITaskData taskDatabase;
+        Data.Services.IAppointmentData appointmentDatabase;
+        Data.Services.ICategoryData categoryDatabase;
+        Data.Services.INoteData noteDatabase;
+        Data.Services.IDocumentsData documentsDatabase;
 
         // GET: Task
         public ActionResult Index()
         {
-            TaskDataBase = new InMemoryTaskData();
+            taskDatabase = new InMemoryTaskData();
+            appointmentDatabase = new InMemoryAppointmentData();
+            categoryDatabase = new InMemoryCategoryData();
+            noteDatabase = new InMemoryNoteData();
+            documentsDatabase = new InMemoryDocumentsData();
 
             return View();
         }
@@ -24,8 +32,12 @@ namespace ItViteaTaskPlanner.Web.Controllers
         // GET: Task/Details/5
         public ActionResult Details(int id)
         {
-            Data.Task BackendTask = TaskDataBase.Get(id);
+            Data.Task BackendTask = taskDatabase.Get(id);
             Task taskDetails = ModelConverter.Convert<Data.Task, Task>(BackendTask, new Task());
+
+            ViewBag.appointmentData = appointmentDatabase.Get(id);
+            ViewBag.categoryData = categoryDatabase.Get(taskDetails.CategoryId);
+            ViewBag.noteData = noteDatabase.GetNotesOfTast(id);
 
             return View(taskDetails);
         }
