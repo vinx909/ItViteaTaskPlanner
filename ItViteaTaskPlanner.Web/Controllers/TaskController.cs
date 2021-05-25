@@ -41,24 +41,39 @@ namespace ItViteaTaskPlanner.Web.Controllers
         public ActionResult Details(int id)
         {
             GetDatabases();
+            Details details;
 
-            //---------------------------------------------------------------- < omdat ja hey moeten het aleen hier hebben toch?
-            Data.Task BackendTask = taskDatabase.Get(id);
-            Data.Category category = categoryDatabase.Get(id);
+            bool usePerrys = false;
+            if (usePerrys)
+            {
+                //---------------------------------------------------------------- < omdat ja hey moeten het aleen hier hebben toch?
+                Data.Task BackendTask = taskDatabase.Get(id);
+                Data.Category category = categoryDatabase.Get(id);
 
-            //-------------------------------------------------------------------------- Lang level easy to use converters :D
-            Details details = ModelConverter.Convert(BackendTask, new Details());
-            details = ModelConverter.Convert(category, details);
+                //-------------------------------------------------------------------------- Lang level easy to use converters :D
+                details = ModelConverter.Convert(BackendTask, new Details());
+                details = ModelConverter.Convert(category, details);
 
-            details.Appointments = ModelConverter.Convert(
-                appointmentDatabase.GetAppointmentsOfTast(id), new List<Appointment>());
+                details.Appointments = ModelConverter.Convert(
+                    appointmentDatabase.GetAppointmentsOfTast(id), new List<Appointment>());
 
-            details.Documents = ModelConverter.Convert(
-                documentsDatabase.GetDocumentsOfTast(id), new List<Document>()); 
+                details.Documents = ModelConverter.Convert(
+                    documentsDatabase.GetDocumentsOfTast(id), new List<Document>());
 
-            details.Notes = ModelConverter.Convert(
-                noteDatabase.GetNotesOfTast(id), new List<Note>());
+                details.Notes = ModelConverter.Convert(
+                    noteDatabase.GetNotesOfTast(id), new List<Note>());
+            }
+            else
+            {
+                details = new Details();
+                details.TaskId = id;
+                details.TaskName = taskDatabase.Get(id).Name;
+                details.TaskCategoryId = taskDatabase.Get(id).CategoryId;
+                details.TaskStartTime = taskDatabase.Get(id).StartTime;
+                details.TaskEndTime = taskDatabase.Get(id).EndTime;
 
+                //details.Notes = noteDatabase.GetNotesOfTast(id).ToList();
+            }
             //-----------------------------End of details data gathering.
             return View(details);
         }
