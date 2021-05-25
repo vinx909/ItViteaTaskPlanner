@@ -1,38 +1,32 @@
-﻿using ItViteaTaskPlanner.Web.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory;
+using ItViteaTaskPlanner.Web.Statics;
+using ItViteaTaskPlanner.Web.Models;
 
 namespace ItViteaTaskPlanner.Web.Controllers
 {
     public class TaskController : Controller
     {
-        List<TaskModel> testData;
-
-        private void FillTestData()
-        {
-            testData = new List<TaskModel>();
-            testData.Add(new TaskModel { Id = 0, Title = "title id 0", Discription = "this task is shit", Type = 0, AppointmentIds = new int[0], DocumentIds = new int[0], StartTime = DateTime.Now, EndTime = DateTime.Now });
-            testData.Add(new TaskModel { Id = 1, Title = "title id 1", Discription = "this task is also shit", Type = 0, AppointmentIds = new int[0], DocumentIds = new int[0], StartTime = DateTime.Now, EndTime = DateTime.Now });
-            testData.Add(new TaskModel { Id = 2, Title = "title id 2", Discription = "i will fire myself so i dont have to do this task", Type = 1, AppointmentIds = new int[0], DocumentIds = new int[0], StartTime = DateTime.Now, EndTime = DateTime.Now });
-            testData.Add(new TaskModel { Id = 3, Title = "title id 3", Discription = "...", Type = 2, AppointmentIds = new int[0], DocumentIds = new int[0], StartTime = DateTime.Now, EndTime = DateTime.Now });
-
-        }
+        Data.Services.ITaskData TaskDataBase;
 
         // GET: Task
         public ActionResult Index()
         {
-            FillTestData();
-            return View(testData);
+            TaskDataBase = new InMemoryTaskData();
+
+            return View();
         }
 
         // GET: Task/Details/5
         public ActionResult Details(int id)
         {
-            FillTestData();
-            TaskModel taskDetails = testData.First(t => t.Id == id);
+            Data.Task BackendTask = TaskDataBase.Get(id);
+            Task taskDetails = ModelConverter.Convert<Data.Task, Task>(BackendTask, new Task());
+
             return View(taskDetails);
         }
 

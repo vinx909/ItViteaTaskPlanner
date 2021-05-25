@@ -1,5 +1,4 @@
-﻿@using ItViteaTaskPlanner.Web.Models;
-@model IEnumerable<ItViteaTaskPlanner.Web.Models.TaskModel>
+﻿@model ItViteaTaskPlanner.Web.Models.Task
 
 @{
     ViewBag.Title = "Index";
@@ -7,53 +6,3 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    @for (int i = 0; i < 3; i++)
-    {
-        <th>
-            @Html.Label(((TaskType)i).ToString())
-
-            <table class="table">
-                @foreach (var item in Model)
-                {
-                    if (item.Type == i)
-                    {
-                <tr>
-                    <th>
-                        @Html.Label(item.Title)
-                    </th>
-                    <td>
-                        @Html.Label(item.Discription)
-                    </td>
-                    <td>
-                        @Html.Label($"{item.DocumentIds.Length} documents")
-                    </td>
-                    <td>
-                        @Html.Label($"{item.AppointmentIds.Length} appointment")
-                    </td>
-                    <td>
-                        @Html.Label($"Started: {item.StartTime}")
-                    </td>
-                    <td>
-                        @Html.Label($"Ends: {item.EndTime}")
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Details", "Details", new { id = item.Id })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>
-
-                </tr>
-                    }
-                }
-            </table>
-        </th>
-    }
-</table>

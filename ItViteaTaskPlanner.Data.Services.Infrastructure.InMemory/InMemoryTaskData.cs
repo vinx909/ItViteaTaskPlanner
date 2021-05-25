@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
 {
-    class InMemoryTaskData : ITaskData
+    public class InMemoryTaskData : ITaskData
     {
         private readonly List<Task> tasks;
 

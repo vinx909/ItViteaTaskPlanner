@@ -1,5 +1,4 @@
-﻿@using ItViteaTaskPlanner.Web.Models;
-@model ItViteaTaskPlanner.Web.Models.TaskModel
+﻿@model ItViteaTaskPlanner.Web.Models.Task
 
 @{
     ViewBag.Title = "Details";
@@ -8,31 +7,23 @@
 <h2>Details</h2>
 
 <div>
-    <h4>TaskModel</h4>
+    <h4>Task</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.CategoryId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.CategoryId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Discription)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Discription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.Label(((TaskType)Model.Type).ToString())
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
         <dt>
