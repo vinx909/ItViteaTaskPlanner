@@ -14,8 +14,8 @@ namespace ItViteaTaskPlanner.Web.Models
         public DateTime TaskEndTime { get; set; }
         public string CategoryName { get; set; }
         public string NoteText { get; set; }
-        public IEnumerable<Data.Appointment> Appointments { get; set; }
-        public IEnumerable<Data.Note> Notes { get; set; }
-        public IEnumerable<Data.Document> Documents { get; set; }
+        public IEnumerable<Appointment> Appointments { get; set; }
+        public IEnumerable<Note> Notes { get; set; }
+        public IEnumerable<Document> Documents { get; set; }
     }
 }

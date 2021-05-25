@@ -30,5 +30,13 @@ namespace ItViteaTaskPlanner.Web.Statics
 
             return toObject;
         }
+        public static List<T> Convert<F, T>(List<F> fromObject, List<T> toObject)
+        {
+            for (int i = 0; i < fromObject.Count(); i++)
+            {
+                toObject[i] = Convert<F, T>(fromObject[i], toObject[i]);
+            }
+            return toObject;
+        }
     }
 }

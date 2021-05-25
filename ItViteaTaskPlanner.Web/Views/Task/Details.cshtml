@@ -72,15 +72,14 @@
             </th>
             <th></th>
         </tr>
-
-        @foreach (var item in model.Appointments) //<---------------- WTF
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item)
-                </td>
-            </tr>
-        }
+        @foreach (var item in Model.Appointments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                </tr>
+            }
     </dl>
 </div>
 <p>

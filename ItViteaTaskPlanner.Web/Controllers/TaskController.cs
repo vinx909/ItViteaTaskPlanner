@@ -49,10 +49,16 @@ namespace ItViteaTaskPlanner.Web.Controllers
             //-------------------------------------------------------------------------- Lang level easy to use converters :D
             Details details = ModelConverter.Convert(BackendTask, new Details());
             details = ModelConverter.Convert(category, details);
-            //-------------------------------------------------------------------------- kan geen list converten :(
-            details.Appointments = appointmentDatabase.GetAppointmentsOfTast(id);
-            details.Documents = documentsDatabase.GetDocumentsOfTast(id);
-            details.Notes = noteDatabase.GetNotesOfTast(id);
+
+            details.Appointments = ModelConverter.Convert(
+                appointmentDatabase.GetAppointmentsOfTast(id), new List<Appointment>());
+
+            details.Documents = ModelConverter.Convert(
+                documentsDatabase.GetDocumentsOfTast(id), new List<Document>()); 
+
+            details.Notes = ModelConverter.Convert(
+                noteDatabase.GetNotesOfTast(id), new List<Note>());
+
             //-----------------------------End of details data gathering.
             return View(details);
         }
