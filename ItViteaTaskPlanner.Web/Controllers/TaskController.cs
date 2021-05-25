@@ -17,14 +17,22 @@ namespace ItViteaTaskPlanner.Web.Controllers
         Data.Services.INoteData noteDatabase;
         Data.Services.IDocumentsData documentsDatabase;
 
-        // GET: Task
-        public ActionResult Index()
+        //Zo ergens in de starup file moeten zitten, wat ik niet heb,
+        //in een service die ik niet heb,
+        //Dat je dan instellen, dat c# niet begrijpt,.
+        //Nu zit het hier
+        private void GetDatabases()
         {
             taskDatabase = new InMemoryTaskData();
             appointmentDatabase = new InMemoryAppointmentData();
             categoryDatabase = new InMemoryCategoryData();
             noteDatabase = new InMemoryNoteData();
             documentsDatabase = new InMemoryDocumentsData();
+        }
+        // GET: Task
+        public ActionResult Index()
+        {
+            GetDatabases();
 
             return View();
         }
@@ -32,14 +40,21 @@ namespace ItViteaTaskPlanner.Web.Controllers
         // GET: Task/Details/5
         public ActionResult Details(int id)
         {
+            GetDatabases();
+
+            //---------------------------------------------------------------- < omdat ja hey moeten het aleen hier hebben toch?
             Data.Task BackendTask = taskDatabase.Get(id);
-            Task taskDetails = ModelConverter.Convert<Data.Task, Task>(BackendTask, new Task());
+            Data.Category category = categoryDatabase.Get(id);
 
-            ViewBag.appointmentData = appointmentDatabase.Get(id);
-            ViewBag.categoryData = categoryDatabase.Get(taskDetails.CategoryId);
-            ViewBag.noteData = noteDatabase.GetNotesOfTast(id);
-
-            return View(taskDetails);
+            //-------------------------------------------------------------------------- Lang level easy to use converters :D
+            Details details = ModelConverter.Convert(BackendTask, new Details());
+            details = ModelConverter.Convert(category, details);
+            //-------------------------------------------------------------------------- kan geen list converten :(
+            details.Appointments = appointmentDatabase.GetAppointmentsOfTast(id);
+            details.Documents = documentsDatabase.GetDocumentsOfTast(id);
+            details.Notes = noteDatabase.GetNotesOfTast(id);
+            //-----------------------------End of details data gathering.
+            return View(details);
         }
 
         // GET: Task/Create

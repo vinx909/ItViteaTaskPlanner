@@ -18,11 +18,12 @@ namespace ItViteaTaskPlanner.Web.Statics
 
             foreach (PropertyInfo fromProperty in propertysFromObject)
             {
-                foreach (PropertyInfo toProperty in propertysFromObject)
+                foreach (PropertyInfo toProperty in propertysToObject)
                 {
                     if(fromProperty.Name == toProperty.Name)
                     {
-                        toProperty.SetValue(toObject, fromProperty.GetValue(fromObject));
+                        if(fromProperty.PropertyType == toProperty.PropertyType)
+                            toProperty.SetValue(toObject, fromProperty.GetValue(fromObject));
                     }
                 }
             }

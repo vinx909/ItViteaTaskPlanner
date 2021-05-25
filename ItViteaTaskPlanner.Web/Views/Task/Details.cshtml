@@ -1,4 +1,4 @@
-﻿@model ItViteaTaskPlanner.Web.Models.Task
+﻿@model ItViteaTaskPlanner.Web.Models.Details
 
 @{
     ViewBag.Title = "Details";
@@ -7,44 +7,83 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Task</h4>
+    <h4>Details</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
+            @Html.DisplayNameFor(model => model.TaskId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CategoryId)
+            @Html.DisplayFor(model => model.TaskId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.TaskCategoryId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.TaskCategoryId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
+            @Html.DisplayNameFor(model => model.TaskName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartTime)
+            @Html.DisplayFor(model => model.TaskName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
+            @Html.DisplayNameFor(model => model.TaskStartTime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EndTime)
+            @Html.DisplayFor(model => model.TaskStartTime)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.TaskEndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskEndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoteText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoteText)
+        </dd>
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in model.Appointments) //<---------------- WTF
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item)
+                </td>
+            </tr>
+        }
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
