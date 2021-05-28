@@ -163,7 +163,9 @@ namespace ItViteaTaskPlanner.Web.Controllers
         // GET: Task/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Task task = new Task();
+
+            return View(task);
         }
 
         // POST: Task/Edit/5
