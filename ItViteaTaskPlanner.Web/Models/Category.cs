@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ItViteaTaskPlanner.Web.Models
 {
-    public class Category : ItViteaTaskPlanner.Data.Category
+    public class Category
     {
-
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

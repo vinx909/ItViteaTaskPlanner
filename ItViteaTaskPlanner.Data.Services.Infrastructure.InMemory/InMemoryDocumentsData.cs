@@ -17,7 +17,15 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
                 new Document(){ Id = 1, TaskId = 1}
             };
         }
+        public int Count()
+        {
+            return documents.Count();
+        }
 
+        public int Count(int taskId)
+        {
+            return documents.Count(x => x.Id == taskId);
+        }
         public void Create(Document document)
         {
             documents.Add(document);

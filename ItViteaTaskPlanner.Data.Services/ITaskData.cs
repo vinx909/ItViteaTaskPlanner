@@ -10,6 +10,7 @@ namespace ItViteaTaskPlanner.Data.Services
     {
         Task Get(int id);
         IEnumerable<Task> GetTasksOfCatagory(int catagoryId);
+        int Count();
         void Create(Task task);
         void Edit(Task task);
         void Delete(int taskId);

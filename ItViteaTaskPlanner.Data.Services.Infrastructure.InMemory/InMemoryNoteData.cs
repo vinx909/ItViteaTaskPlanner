@@ -17,6 +17,15 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
                 new Note(){ Id = 1, TaskId = 1, NoteText = "test text"}
             };
         }
+        public int Count()
+        {
+            return notes.Count();
+        }
+
+        public int Count(int taskId)
+        {
+            return notes.Count(x => x.Id == taskId);
+        }
         public void Create(Note note)
         {
             notes.Add(note);

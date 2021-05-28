@@ -20,6 +20,11 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
             };
         }
 
+        public int Count()
+        {
+            return tasks.Count();
+        }
+
         public void Create(Task task)
         {
             tasks.Add(task);

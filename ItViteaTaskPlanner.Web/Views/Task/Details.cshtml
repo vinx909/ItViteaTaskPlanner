@@ -59,27 +59,54 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NoteText)
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th></th>
         </dt>
+        @foreach (var item in Model.Notes)
+        {
+            <dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </dd>
+            </dt>
+            <dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.NoteText)
+                </dd>
+            </dt>
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.NoteText)
-        </dd>
-
-        <tr>
+        <dt>
             <th>
                 @Html.DisplayNameFor(model => model.Appointments)
             </th>
             <th></th>
-        </tr>
+        </dt>
         @foreach (var item in Model.Appointments)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                </tr>
-            }
+        {
+            <dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </dd>
+            </dt>
+        }
+
+        <dt>
+            <th>
+                @Html.DisplayNameFor(model => model.Documents)
+            </th>
+            <th></th>
+        </dt>
+        @foreach (var item in Model.Documents)
+        {
+            <dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </dd>
+            </dt>
+        }
     </dl>
 </div>
 <p>

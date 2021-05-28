@@ -19,6 +19,16 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
             };
         }
 
+        public int Count()
+        {
+            return categories.Count();
+        }
+
+        public int Count(int taskId)
+        {
+            return categories.Count(x => x.Id == taskId);
+        }
+
         public void Create(Category category)
         {
             categories.Add(category);

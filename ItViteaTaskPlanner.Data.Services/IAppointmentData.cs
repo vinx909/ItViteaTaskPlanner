@@ -6,6 +6,8 @@ namespace ItViteaTaskPlanner.Data.Services
     {
         Appointment Get(int id);
         IEnumerable<Appointment> GetAppointmentsOfTast(int tastId);
+        int Count();
+        int Count(int Taskid);
         void Create(Appointment appointment);
         void Edit(Appointment appointment);
         void Delete(int appointmentId);

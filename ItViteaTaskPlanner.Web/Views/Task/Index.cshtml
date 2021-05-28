@@ -1,4 +1,4 @@
-﻿@model ItViteaTaskPlanner.Web.Models.Task
+﻿@model IEnumerable<ItViteaTaskPlanner.Web.Models.Overview>
 
 @{
     ViewBag.Title = "Index";
@@ -6,3 +6,70 @@
 
 <h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskStartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskEndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointmentsCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NotesCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentsCount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskStartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskEndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointmentsCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NotesCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentsCount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TaskId }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

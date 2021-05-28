@@ -18,6 +18,16 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
             };
         }
 
+        public int Count()
+        {
+            return appointments.Count();
+        }
+
+        public int Count(int Taskid)
+        {
+            return appointments.Count(x => x.Id == Taskid);
+        }
+
         public void Create(Appointment appointment)
         {
             appointments.Add(appointment);

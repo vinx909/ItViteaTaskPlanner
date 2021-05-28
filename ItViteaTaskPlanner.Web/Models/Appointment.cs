@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ItViteaTaskPlanner.Web.Models
 {
-    public class Appointment : ItViteaTaskPlanner.Data.Appointment
+    public class Appointment
     {
-
+        public int Id { get; set; }
+        public int TaskId { get; set; }
     }
 }
