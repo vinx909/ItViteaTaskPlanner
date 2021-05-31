@@ -12,12 +12,7 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
 
         public InMemoryTaskData()
         {
-            tasks = new List<Task>()
-            {
-                new Task(){ Id = 1, CategoryId = 1, StartTime = new DateTime(2021,5,18), EndTime = new DateTime(2021, 5, 19), Name = "test 1"},
-                new Task(){ Id = 2, CategoryId = 1, StartTime = new DateTime(2021,5,19), EndTime = new DateTime(2021, 5, 20), Name = "test 2"},
-                new Task(){ Id = 3, CategoryId = 2, StartTime = new DateTime(2021,5,20), EndTime = new DateTime(2021, 5, 21), Name = "test 3"}
-            };
+            tasks = new List<Task>(InitialData.Tasks);
         }
 
         public int Count()

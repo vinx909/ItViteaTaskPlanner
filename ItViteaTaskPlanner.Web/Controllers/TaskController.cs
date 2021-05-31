@@ -81,59 +81,17 @@ namespace ItViteaTaskPlanner.Web.Controllers
             //        details.Appointments = ModelConverter.ConvertByAttribute(
             //            appointmentDatabase.GetAppointmentsOfTast(id), new List<Appointment>());
 
-            //        details.Documents = ModelConverter.ConvertByAttribute(
-            //            documentsDatabase.GetDocumentsOfTast(id), new List<Document>());
+            //---------------------------------------------------------------- < omdat ja hey moeten het aleen hier hebben toch?
+            Data.Task BackendTask = taskDatabase.Get(id);
+            Data.Category category = categoryDatabase.Get(id);
 
-            //        details.Notes = ModelConverter.ConvertByAttribute(
-            //            noteDatabase.GetNotesOfTast(id), new List<Note>());
-            //    }
-            //    else
-            //    {
-            //        //---------------------------------------------------------------- < omdat ja hey moeten het aleen hier hebben toch?
-            //        Data.Task BackendTask = taskDatabase.Get(id);
-            //        Data.Category category = categoryDatabase.Get(id);
-
-            //        //-------------------------------------------------------------------------- Lang level easy to use converters :D
-            //        details = ModelConverter.Convert(BackendTask, new Details());
-            //        details = ModelConverter.Convert(category, details);
-
-            //        details.Appointments = ModelConverter.Convert(
-            //            appointmentDatabase.GetAppointmentsOfTast(id), new List<Appointment>());
-
-            //        details.Documents = ModelConverter.Convert(
-            //            documentsDatabase.GetDocumentsOfTast(id), new List<Document>());
-
-            //        details.Notes = ModelConverter.Convert(
-            //            noteDatabase.GetNotesOfTast(id), new List<Note>());
-            //    }
-            //}
-            //else
-            //{
-            #endregion
-
-            details = new Details();
-            details.Appointments = new List<Appointment>();
-            details.Documents = new List<Document>();
-            details.Notes = new List<Note>();
-            details.TaskId = id;
-            details.TaskName = taskDatabase.Get(id).Name;
-            details.TaskCategoryId = taskDatabase.Get(id).CategoryId;
-            details.TaskStartTime = taskDatabase.Get(id).StartTime;
-            details.TaskEndTime = taskDatabase.Get(id).EndTime;
-            foreach (var item in noteDatabase.GetNotesOfTast(id))
-            {
-                details.Notes.Add(new Note() { Id = item.Id, TaskId = item.TaskId, NoteText = item.NoteText });
-            }
-            foreach (var item in documentsDatabase.GetDocumentsOfTast(id))
-            {
-                details.Documents.Add(new Document() { Id = item.Id, TaskId = item.TaskId });
-            }
-            foreach (var item in appointmentDatabase.GetAppointmentsOfTast(id))
-            {
-                details.Appointments.Add(new Appointment() { Id = item.Id, TaskId = item.TaskId });
-            }
-            
-            //}
+            //-------------------------------------------------------------------------- Lang level easy to use converters :D
+            Details details = ModelConverter.Convert(BackendTask, new Details());
+            details = ModelConverter.Convert(category, details);
+            //-------------------------------------------------------------------------- kan geen list converten :(
+            details.Appointments = appointmentDatabase.GetAppointmentsOfTask(id);
+            details.Documents = documentsDatabase.GetDocumentsOfTast(id);
+            details.Notes = noteDatabase.GetNotesOfTast(id);
             //-----------------------------End of details data gathering.
             return View(details);
         }

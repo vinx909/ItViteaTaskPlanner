@@ -12,10 +12,7 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
 
         public InMemoryAppointmentData()
         {
-            appointments = new List<Appointment>()
-            {
-                new Appointment(){ Id = 1, TaskId = 1 }
-            };
+            appointments = new List<Appointment>(InitialData.Appointments);
         }
 
         public int Count()
@@ -52,7 +49,7 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
         {
             return appointments.FirstOrDefault(a => a.Id == id);
         }
-        public IEnumerable<Appointment> GetAppointmentsOfTast(int tastId)
+        public IEnumerable<Appointment> GetAppointmentsOfTask(int tastId)
         {
             foreach (Appointment appointment in appointments)
             {

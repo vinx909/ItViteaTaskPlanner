@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ItViteaTaskPlanner.Data
 {
     public class Task
     {
-        [FieldName("Id")]
+        [Key]
         public int Id { get; set; }
-        [FieldName("CategoryId")]
-        public int CategoryId { get; set; }
-        [FieldName("Name")]
+        public virtual int CategoryId { get; set; }
+        [ForeignKey(nameof(CategoryId))]
+        public virtual Category Category { get; set; }
         public string Name { get; set; }
-        [FieldName("StartTime")]
         public DateTime StartTime { get; set; }
-        [FieldName("EndTime")]
         public DateTime EndTime { get; set; }
+        [ForeignKey(nameof(Note.TaskId))]
+        public ICollection<Note> Notes { get; set; }
+        [ForeignKey(nameof(Document.TaskId))]
+        public ICollection<Document> Documents { get; set; }
+        [ForeignKey(nameof(Appointment.TaskId))]
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }

@@ -10,13 +10,7 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
 
         public InMemoryCategoryData()
         {
-            categories = new List<Category>()
-            {
-                new Category(){ Id = 1, Name = "To Do"},
-                new Category(){ Id = 2, Name = "Doing"},
-                new Category(){ Id = 3, Name = "Done"},
-                new Category(){ Id = 4, Name = "Backlog"}
-            };
+            categories = new List<Category>(InitialData.Categories);
         }
 
         public int Count()
@@ -52,6 +46,11 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
         public Category Get(int id)
         {
             return categories.FirstOrDefault(c => c.Id == id);
+        }
+
+        public IEnumerable<Category> GetAll()
+        {
+            return categories;
         }
     }
 }
