@@ -50,7 +50,7 @@ namespace ItViteaTaskPlanner.Web.Controllers
             Details details = ModelConverter.Convert(BackendTask, new Details());
             details = ModelConverter.Convert(category, details);
             //-------------------------------------------------------------------------- kan geen list converten :(
-            details.Appointments = appointmentDatabase.GetAppointmentsOfTast(id);
+            details.Appointments = appointmentDatabase.GetAppointmentsOfTask(id);
             details.Documents = documentsDatabase.GetDocumentsOfTast(id);
             details.Notes = noteDatabase.GetNotesOfTast(id);
             //-----------------------------End of details data gathering.

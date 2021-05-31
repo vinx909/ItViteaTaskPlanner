@@ -43,5 +43,10 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
         {
             return categories.FirstOrDefault(c => c.Id == id);
         }
+
+        public IEnumerable<Category> GetAll()
+        {
+            return categories;
+        }
     }
 }

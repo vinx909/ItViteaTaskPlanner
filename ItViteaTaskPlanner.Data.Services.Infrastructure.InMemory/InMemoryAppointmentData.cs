@@ -42,7 +42,7 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
         {
             return appointments.FirstOrDefault(a => a.Id == id);
         }
-        public IEnumerable<Appointment> GetAppointmentsOfTast(int tastId)
+        public IEnumerable<Appointment> GetAppointmentsOfTask(int tastId)
         {
             foreach (Appointment appointment in appointments)
             {

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItViteaTaskPlanner.Data.Ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory", "ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory\ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory.csproj", "{5BD555F8-F031-475F-BD47-A9BF178B5C80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItViteaTaskPlanner.Data.Services.Infrastructure.Sql", "ItViteaTaskPlanner.Data.Services.Infrastructure.Sql\ItViteaTaskPlanner.Data.Services.Infrastructure.Sql.csproj", "{F20B7215-D48C-437D-8385-4A124553B326}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5BD555F8-F031-475F-BD47-A9BF178B5C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BD555F8-F031-475F-BD47-A9BF178B5C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BD555F8-F031-475F-BD47-A9BF178B5C80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F20B7215-D48C-437D-8385-4A124553B326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F20B7215-D48C-437D-8385-4A124553B326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F20B7215-D48C-437D-8385-4A124553B326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F20B7215-D48C-437D-8385-4A124553B326}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
