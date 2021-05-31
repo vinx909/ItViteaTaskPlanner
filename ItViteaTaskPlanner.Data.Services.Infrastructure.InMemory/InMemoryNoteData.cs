@@ -12,10 +12,7 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
 
         public InMemoryNoteData()
         {
-            notes = new List<Note>()
-            {
-                new Note(){ Id = 1, TaskId = 1, NoteText = "test text"}
-            };
+            notes = new List<Note>(InitialData.Notes);
         }
         public void Create(Note note)
         {

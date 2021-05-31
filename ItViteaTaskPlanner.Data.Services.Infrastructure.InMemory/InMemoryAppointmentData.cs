@@ -12,10 +12,7 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
 
         public InMemoryAppointmentData()
         {
-            appointments = new List<Appointment>()
-            {
-                new Appointment(){ Id = 1, TaskId = 1 }
-            };
+            appointments = new List<Appointment>(InitialData.Appointments);
         }
 
         public void Create(Appointment appointment)

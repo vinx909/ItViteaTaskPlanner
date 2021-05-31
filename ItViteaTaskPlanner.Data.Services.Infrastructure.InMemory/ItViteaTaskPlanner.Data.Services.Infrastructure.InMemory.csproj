@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InitialData.cs" />
     <Compile Include="InMemoryAppointmentData.cs" />
     <Compile Include="InMemoryCategoryData.cs" />
     <Compile Include="InMemoryDocumentsData.cs" />

@@ -12,10 +12,7 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
 
         public InMemoryDocumentsData()
         {
-            documents = new List<Document>()
-            {
-                new Document(){ Id = 1, TaskId = 1}
-            };
+            documents = new List<Document>(InitialData.Documents);
         }
 
         public void Create(Document document)
