@@ -12,12 +12,12 @@ namespace ItViteaTaskPlanner.Web
 {
     public class ContainerConfig
     {
-        private enum infrastructurOrigin
+        private enum InfrastructurOrigin
         {
             inMemory,
             sql
         }
-        private const infrastructurOrigin origin = infrastructurOrigin.inMemory;
+        private const InfrastructurOrigin origin = InfrastructurOrigin.sql;
 
         internal static void RegisterContainer()
         {
@@ -27,7 +27,7 @@ namespace ItViteaTaskPlanner.Web
 
             switch (origin)
             {
-                case infrastructurOrigin.inMemory:
+                case InfrastructurOrigin.inMemory:
                     builder.RegisterType<InMemoryAppointmentData>().As<IAppointmentData>().SingleInstance();
                     builder.RegisterType<InMemoryCategoryData>().As<ICategoryData>().SingleInstance();
                     builder.RegisterType<InMemoryDocumentsData>().As<IDocumentsData>().SingleInstance();
@@ -35,7 +35,7 @@ namespace ItViteaTaskPlanner.Web
                     builder.RegisterType<InMemoryTaskData>().As<ITaskData>().SingleInstance();
                     break;
 
-                case infrastructurOrigin.sql:
+                case InfrastructurOrigin.sql:
                     builder.RegisterType<SqlAppointmentData>().As<IAppointmentData>().InstancePerRequest();
                     builder.RegisterType<SqlCategoryData>().As<ICategoryData>().InstancePerRequest();
                     builder.RegisterType<SqlDocumentsData>().As<IDocumentsData>().InstancePerRequest();
