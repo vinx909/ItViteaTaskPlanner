@@ -14,7 +14,7 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
         {
             appointments = new List<Appointment>(InitialData.Appointments);
         }
-
+        /*
         public int Count()
         {
             return appointments.Count();
@@ -24,7 +24,7 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
         {
             return appointments.Count(x => x.Id == Taskid);
         }
-
+        */
         public void Create(Appointment appointment)
         {
             appointments.Add(appointment);

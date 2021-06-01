@@ -15,6 +15,16 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.Sql
             this.dbContext = dbContext;
         }
 
+        public int Count()
+        {
+            return dbContext.Documents.Count();
+        }
+
+        public int Count(int taskId)
+        {
+            return GetDocumentsOfTast(taskId).Count();
+        }
+
         public void Create(Document document)
         {
             var entry = dbContext.Entry(document);

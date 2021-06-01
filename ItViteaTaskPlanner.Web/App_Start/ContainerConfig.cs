@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using ItViteaTaskPlanner.Data.Services;
@@ -17,7 +18,7 @@ namespace ItViteaTaskPlanner.Web
             inMemory,
             sql
         }
-        private const InfrastructurOrigin origin = InfrastructurOrigin.sql;
+        private const InfrastructurOrigin origin = InfrastructurOrigin.inMemory;
 
         internal static void RegisterContainer()
         {
@@ -44,6 +45,9 @@ namespace ItViteaTaskPlanner.Web
                     builder.RegisterType<TaskPlannerDbContext>().InstancePerRequest();
                     break;
             }
+
+            var container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
 }

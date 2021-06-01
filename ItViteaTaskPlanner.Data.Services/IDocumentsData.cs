@@ -9,9 +9,9 @@ namespace ItViteaTaskPlanner.Data.Services
     public interface IDocumentsData
     {
         Document Get(int id);
-        IEnumerable<Document> GetDocumentsOfTast(int tastId);
+        IEnumerable<Document> GetDocumentsOfTast(int taskId);
         int Count();
-        int Count(int Taskid);
+        int Count(int taskId);
         void Create(Document document);
         void Edit(Document document);
         void Delete(int documentId);

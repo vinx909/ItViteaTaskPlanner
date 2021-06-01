@@ -9,9 +9,9 @@ namespace ItViteaTaskPlanner.Data.Services
     public interface INoteData
     {
         Note Get(int id);
-        IEnumerable<Note> GetNotesOfTast(int tastId);
+        IEnumerable<Note> GetNotesOfTast(int taskId);
         int Count();
-        int Count(int Taskid);
+        int Count(int taskId);
         void Create(Note note);
         void Edit(Note note);
         void Delete(int noteId);

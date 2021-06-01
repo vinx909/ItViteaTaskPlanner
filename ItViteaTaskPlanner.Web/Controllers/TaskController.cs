@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory;
 using ItViteaTaskPlanner.Web.Statics;
 using ItViteaTaskPlanner.Web.Models;
+using ItViteaTaskPlanner.Data.Services;
 
 namespace ItViteaTaskPlanner.Web.Controllers
 {
@@ -21,13 +22,25 @@ namespace ItViteaTaskPlanner.Web.Controllers
         //in een service die ik niet heb,
         //Dat je dan instellen, dat c# niet begrijpt,.
         //Nu zit het hier
+        public TaskController(ITaskData taskData, IAppointmentData appointmentData, ICategoryData categoryData, INoteData noteData, IDocumentsData documentsData)
+        {
+            this.taskDatabase = taskData;
+            this.appointmentDatabase = appointmentData;
+            this.categoryDatabase = categoryData;
+            this.noteDatabase = noteData;
+            this.documentsDatabase = documentsData;
+        }
+
         private void GetDatabases()
         {
-            taskDatabase = new InMemoryTaskData();
-            appointmentDatabase = new InMemoryAppointmentData();
-            categoryDatabase = new InMemoryCategoryData();
-            noteDatabase = new InMemoryNoteData();
-            documentsDatabase = new InMemoryDocumentsData();
+            if (false) //tempoarily disabled
+            {
+                taskDatabase = new InMemoryTaskData();
+                appointmentDatabase = new InMemoryAppointmentData();
+                categoryDatabase = new InMemoryCategoryData();
+                noteDatabase = new InMemoryNoteData();
+                documentsDatabase = new InMemoryDocumentsData();
+            }
         }
         // GET: Task
         public ActionResult Index()

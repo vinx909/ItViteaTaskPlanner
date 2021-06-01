@@ -38,6 +38,8 @@ namespace ItViteaTaskPlanner.Data.Services.Infrastructure.InMemory
             List<Note> notes = new List<Note>() { new Note() { Id = 1, TaskId = 1, Task = tasks[0], NoteText = "test text" } };
             tasks[0].Notes = new List<Note>() { notes[0] };
             Notes = notes;
+
+            Tasks = tasks;
         }
 
         internal static IEnumerable<Appointment> Appointments { get; private set; }
