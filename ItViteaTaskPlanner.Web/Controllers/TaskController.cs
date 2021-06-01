@@ -35,7 +35,7 @@ namespace ItViteaTaskPlanner.Web.Controllers
             GetDatabases();
             List<Overview> OverviewList = new List<Overview>();
 
-            for (int categoryID = 0; categoryID < categoryDatabase.Count(); categoryID++) //Theres no list we can pull from
+            for (int categoryID = 0; categoryID < categoryDatabase.GetAll().ToList().Count(); categoryID++) //Theres no list we can pull from
             {
                 foreach (var task in taskDatabase.GetTasksOfCatagory(categoryID))
                 {
@@ -47,7 +47,7 @@ namespace ItViteaTaskPlanner.Web.Controllers
                         TaskStartTime = task.StartTime,
                         TaskEndTime = task.EndTime,
                         DocumentsCount = documentsDatabase.Count(task.Id),
-                        AppointmentsCount = appointmentDatabase.Count(task.Id),
+                        AppointmentsCount = appointmentDatabase.GetAppointmentsOfTask(task.Id).Count(),
                         NotesCount = noteDatabase.Count(task.Id)
                     });
                 }
@@ -61,37 +61,33 @@ namespace ItViteaTaskPlanner.Web.Controllers
         public ActionResult Details(int id)
         {
             GetDatabases();
-            Details details;
 
-            #region old
-            //bool usePerrys = false;
-            //if (usePerrys)
-            //{
-            //    bool ByAttribute = true;
-            //    if (ByAttribute)
-            //    {
-            //        //---------------------------------------------------------------- < omdat ja hey moeten het aleen hier hebben toch?
-            //        Data.Task BackendTask = taskDatabase.Get(id);
-            //        Data.Category category = categoryDatabase.Get(id);
 
-            //        //-------------------------------------------------------------------------- Lang level easy to use converters :D
-            //        details = ModelConverter.ConvertByAttribute(BackendTask, new Details());
-            //        details = ModelConverter.ConvertByAttribute(category, details);
-
-            //        details.Appointments = ModelConverter.ConvertByAttribute(
-            //            appointmentDatabase.GetAppointmentsOfTast(id), new List<Appointment>());
-
-            //---------------------------------------------------------------- < omdat ja hey moeten het aleen hier hebben toch?
-            Data.Task BackendTask = taskDatabase.Get(id);
-            Data.Category category = categoryDatabase.Get(id);
+            var BackendTask = taskDatabase.Get(id);
+            var category = categoryDatabase.Get(id);
 
             //-------------------------------------------------------------------------- Lang level easy to use converters :D
             Details details = ModelConverter.Convert(BackendTask, new Details());
             details = ModelConverter.Convert(category, details);
             //-------------------------------------------------------------------------- kan geen list converten :(
-            details.Appointments = appointmentDatabase.GetAppointmentsOfTask(id);
-            details.Documents = documentsDatabase.GetDocumentsOfTast(id);
-            details.Notes = noteDatabase.GetNotesOfTast(id);
+            List<Data.Appointment> listAppointments = appointmentDatabase.GetAppointmentsOfTask(id).ToList();
+            foreach (var item in listAppointments)
+            {
+                details.Appointments.Add(new Appointment { Id = item.Id, TaskId = item.TaskId });
+            }
+
+            List<Data.Document> listDocuments = documentsDatabase.GetDocumentsOfTast(id).ToList();
+            foreach (var item in listDocuments)
+            {
+                details.Documents.Add(new Document { Id = item.Id, TaskId = item.TaskId });
+            }
+
+            List<Data.Document> listNotes = documentsDatabase.GetDocumentsOfTast(id).ToList();
+            foreach (var item in listNotes)
+            {
+                details.Notes.Add(new Note { Id = item.Id, TaskId = item.TaskId });
+            }
+
             //-----------------------------End of details data gathering.
             return View(details);
         }
