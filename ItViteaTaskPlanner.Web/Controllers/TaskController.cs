@@ -31,6 +31,7 @@ namespace ItViteaTaskPlanner.Web.Controllers
             this.documentsDatabase = documentsData;
         }
 
+        /*
         private void GetDatabases()
         {
             if (false) //tempoarily disabled
@@ -42,13 +43,17 @@ namespace ItViteaTaskPlanner.Web.Controllers
                 documentsDatabase = new InMemoryDocumentsData();
             }
         }
+        //*/
+
         // GET: Task
         public ActionResult Index()
         {
-            GetDatabases();
+            //GetDatabases();
             List<Overview> OverviewList = new List<Overview>();
 
-            for (int categoryID = 0; categoryID < categoryDatabase.GetAll().ToList().Count(); categoryID++) //Theres no list we can pull from
+            /*Perry's method*/
+            /*
+            for (int categoryID = 0; categoryID < categoryDatabase.GetAll().ToList().Count(); categoryID++) //Theres no list we can pull from /r: for each loop would acomplish the same
             {
                 foreach (var task in taskDatabase.GetTasksOfCatagory(categoryID))
                 {
@@ -65,7 +70,18 @@ namespace ItViteaTaskPlanner.Web.Controllers
                     });
                 }
             }
-
+            //*/
+            /*vincents method*/
+            foreach (Data.Category category in categoryDatabase.GetAll())
+            {
+                if (category.Tasks != null)
+                {
+                    foreach (Data.Task task in category.Tasks)
+                    {
+                        OverviewList.Add(new Overview(task));
+                    } 
+                }
+            }
 
             return View(OverviewList);
         }
@@ -73,7 +89,7 @@ namespace ItViteaTaskPlanner.Web.Controllers
         // GET: Task/Details/5
         public ActionResult Details(int id)
         {
-            GetDatabases();
+            //GetDatabases();
 
             /*Perry's method*/
             /*
@@ -102,7 +118,7 @@ namespace ItViteaTaskPlanner.Web.Controllers
             }
 
             //-----------------------------End of details data gathering.
-            */
+            //*/
             /*vincents method*/
             Details details = new Details(taskDatabase, id);
             return View(details);

@@ -35,20 +35,29 @@ namespace ItViteaTaskPlanner.Web.Models
             TaskStartTime = task.StartTime;
             TaskEndTime = task.EndTime;
             CategoryName = task.Category.Name;
-            
-            foreach (Data.Appointment appointment in task.Appointments)
+
+            if (task.Appointments != null)
             {
-                Appointments.Add(new Appointment(appointment));
+                foreach (Data.Appointment appointment in task.Appointments)
+                {
+                    Appointments.Add(new Appointment(appointment));
+                } 
             }
 
-            foreach(Data.Note note in task.Notes)
+            if (task.Notes != null)
             {
-                Notes.Add(new Note(note));
+                foreach (Data.Note note in task.Notes)
+                {
+                    Notes.Add(new Note(note));
+                } 
             }
 
-            foreach (Data.Document document in task.Documents)
+            if (task.Documents != null)
             {
-                Documents.Add(new Document(document));
+                foreach (Data.Document document in task.Documents)
+                {
+                    Documents.Add(new Document(document));
+                } 
             }
         }
     }
