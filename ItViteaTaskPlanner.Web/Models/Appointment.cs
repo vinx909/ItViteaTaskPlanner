@@ -8,6 +8,13 @@ namespace ItViteaTaskPlanner.Web.Models
 {
     public class Appointment
     {
+        public Appointment() { }
+        public Appointment(Data.Appointment appointment)
+        {
+            Id = appointment.Id;
+            TaskId = appointment.TaskId;
+        }
+
         public int Id { get; set; }
         public int TaskId { get; set; }
     }

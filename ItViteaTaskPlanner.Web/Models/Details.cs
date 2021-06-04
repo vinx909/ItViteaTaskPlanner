@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ItViteaTaskPlanner.Data.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,5 +17,39 @@ namespace ItViteaTaskPlanner.Web.Models
         public List<Appointment> Appointments { get; set; }
         public List<Note> Notes { get; set; }
         public List<Document> Documents { get; set; }
+
+        public Details()
+        {
+            Appointments = new List<Appointment>();
+            Notes = new List<Note>();
+            Documents = new List<Document>();
+        }
+
+        public Details(ITaskData taskData, int taskId) : this()
+        {
+            Data.Task task = taskData.Get(taskId);
+
+            TaskId = taskId;
+            TaskCategoryId = task.CategoryId;
+            TaskName = task.Name;
+            TaskStartTime = task.StartTime;
+            TaskEndTime = task.EndTime;
+            CategoryName = task.Category.Name;
+            
+            foreach (Data.Appointment appointment in task.Appointments)
+            {
+                Appointments.Add(new Appointment(appointment));
+            }
+
+            foreach(Data.Note note in task.Notes)
+            {
+                Notes.Add(new Note(note));
+            }
+
+            foreach (Data.Document document in task.Documents)
+            {
+                Documents.Add(new Document(document));
+            }
+        }
     }
 }

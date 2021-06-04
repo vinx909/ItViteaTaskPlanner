@@ -75,10 +75,10 @@ namespace ItViteaTaskPlanner.Web.Controllers
         {
             GetDatabases();
 
-
+            /*Perry's method*/
+            /*
             var BackendTask = taskDatabase.Get(id);
             var category = categoryDatabase.Get(id);
-
             //-------------------------------------------------------------------------- Lang level easy to use converters :D
             Details details = ModelConverter.Convert(BackendTask, new Details());
             details = ModelConverter.Convert(category, details);
@@ -102,6 +102,9 @@ namespace ItViteaTaskPlanner.Web.Controllers
             }
 
             //-----------------------------End of details data gathering.
+            */
+            /*vincents method*/
+            Details details = new Details(taskDatabase, id);
             return View(details);
         }
 
