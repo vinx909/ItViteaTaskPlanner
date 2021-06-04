@@ -159,6 +159,7 @@
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\Overview.cs" />
+    <Compile Include="Models\OverviewPerCatagory.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\Details.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

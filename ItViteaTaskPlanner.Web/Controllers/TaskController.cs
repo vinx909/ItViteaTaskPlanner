@@ -71,19 +71,8 @@ namespace ItViteaTaskPlanner.Web.Controllers
                 }
             }
             //*/
-            /*vincents method*/
-            foreach (Data.Category category in categoryDatabase.GetAll())
-            {
-                if (category.Tasks != null)
-                {
-                    foreach (Data.Task task in category.Tasks)
-                    {
-                        OverviewList.Add(new Overview(task));
-                    } 
-                }
-            }
 
-            return View(OverviewList);
+            return View(new OverviewPerCatagory(categoryDatabase));
         }
 
         // GET: Task/Details/5

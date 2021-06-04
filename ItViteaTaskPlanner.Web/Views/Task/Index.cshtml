@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ItViteaTaskPlanner.Web.Models.Overview>
+﻿@model ItViteaTaskPlanner.Web.Models.OverviewPerCatagory
 
 @{
     ViewBag.Title = "Index";
@@ -9,65 +9,47 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TaskId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TaskName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TaskStartTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TaskEndTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AppointmentsCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NotesCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DocumentsCount)
-        </th>
-        <th></th>
+        @foreach(var item in Model.TasksPerCatagories)
+        {
+            <th>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </th>
+        }
     </tr>
-
-@foreach (var item in Model) {
     <tr>
+        @foreach (var item in Model.TasksPerCatagories)
+        {
+            var dummy = item.Overviews.FirstOrDefault();
         <td>
-            @Html.DisplayFor(modelItem => item.TaskId)
+            <table>
+                @foreach (var subItem in item.Overviews)
+                {
+                    <tr>
+                        <th>
+                            @Html.DisplayFor(modelItem => subItem.TaskName)
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => subItem.TaskStartTime)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => subItem.TaskEndTime)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id = subItem.TaskId }) |
+                        </td>
+                    </tr>
+                }
+            </table>
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TaskName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TaskStartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TaskEndTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AppointmentsCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NotesCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DocumentsCount)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.TaskId }) |
-        </td>
+        }
     </tr>
-}
-
 </table>
